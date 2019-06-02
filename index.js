@@ -152,8 +152,8 @@ app.get('/files', authRequired, (req, res) => {
 			res.render('files', { files: response.data })
 		})
 		.catch((err) => {
-			console.log('dropbox api call returned with err', err)
-			res.render('error', { message: err.data })
+			console.log('dropbox api call returned with err', err.response)
+			res.render('error', { message: err.response.status + '-' + err.response.data })
 		})
 })
 
