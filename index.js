@@ -148,7 +148,7 @@ app.get('/files', authRequired, (req, res) => {
 		url: 'https://api.dropboxapi.com/2/files/list_folder',
 		headers: { "Authorization": `Bearer ${req.user.dropboxtoken}` },
 		data: {
-			path: '/Temp'
+			path: '/'
 		}
 	})
 		.then((response) => {

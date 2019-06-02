@@ -3,4 +3,7 @@ block content
 	h1 My files
 	ul
 		each file in files
-			li= file.name
+			li
+				if file['.tag'] == 'folder'
+					span 📁 
+				span= file.name
