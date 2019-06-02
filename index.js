@@ -144,12 +144,16 @@ app.get('/member', authRequired, (req, res) => {
 app.get('/files', authRequired, (req, res) => {
 	if (!req.user.dropboxid) return res.render('error', { message: 'You need dropbox account linked!' })
 	axios({
-		url: 'https://api.dropboxapi.com/1/metadata/auto/Temp',
-		headers: { "Authorization": `Bearer ${req.user.dropboxtoken}` }
+		method: 'post',
+		url: 'https://api.dropboxapi.com/2/files/list_folder',
+		headers: { "Authorization": `Bearer ${req.user.dropboxtoken}` },
+		data: {
+			path: '/Temp'
+		}
 	})
 		.then((response) => {
 			console.log(response.data)
-			res.render('files', { files: response.data })
+			res.render('files', { files: response.data.entries })
 		})
 		.catch((err) => {
 			console.log('dropbox api call returned with err', err.response)

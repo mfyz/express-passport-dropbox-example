@@ -1,9 +1,0 @@
-extends layout
-block content
-	h1 My gists
-	ul
-		each gist in gists
-			li
-				span= gist.description
-				&nbsp;
-				a(href= gist.html_url target='_blank')= gist.html_url
